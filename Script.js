@@ -16,7 +16,7 @@ const CONFIG = {
 
   // Link tombol
   links: {
-    website:    "#",          // ✏️ Contoh: "https://piscokcaramel.com"
+    website:    "https://piscokcarameltweentytree.netlify.app/website/piscok",          // ✏️ Contoh: "https://piscokcaramel.com"
     shopeeFood: "#",          // ✏️ Contoh: "https://shopee.co.id/..."
     gojek:      "#",          // ✏️ Contoh: "https://gofood.co.id/..."
   },
