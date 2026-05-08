@@ -1,0 +1,285 @@
+/* ============================================================
+   Style.css — Piskok Caramel Link Page
+   ============================================================ */
+
+/* ── RESET & BASE ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── CSS VARIABLES ── */
+:root {
+  --gold:           #F5C518;
+  --shopee-red:     #EE4D2D;
+  --gojek-green:    #00AA13;
+  --white:          #ffffff;
+  --text-shadow:    0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* ── HTML & BODY ── */
+html, body {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #111;
+  overflow: hidden;
+}
+
+/* ============================================================
+   BACKGROUND
+   ============================================================ */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url('YOUR_BACKGROUND_IMAGE.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  filter: brightness(0.55) saturate(1.1);
+  transition: background-image 0.3s ease;
+}
+
+.bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15)  0%,
+    rgba(0, 0, 0, 0.45) 60%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+
+/* ============================================================
+   CARD WRAPPER
+   ============================================================ */
+.card {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 92vw);
+  padding:
+    clamp(28px, 5vw, 52px)
+    clamp(20px, 5vw, 44px)
+    clamp(32px, 6vw, 56px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 2.5vw, 20px);
+}
+
+/* ============================================================
+   LOGO & TEKS TOKO
+   ============================================================ */
+.logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: fadeDown 0.7s ease both;
+}
+
+/* ── Logo: tanpa outline ── */
+.logo-img {
+  width:  106px;
+  height: 106px;
+  border-radius: 50%;
+  border: none;                 /* ← hapus garis kuning */
+  background: transparent;
+  box-shadow: none;             /* ← hapus glow kuning */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+/* Emoji fallback */
+.logo-img-fallback {
+  font-size: 40px;
+  line-height: 1;
+}
+
+/* Gambar logo memenuhi seluruh lingkaran tanpa terpotong */
+.logo-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;     /* contain = tidak terpotong */
+  border-radius: 50%;
+  display: block;
+}
+
+.store-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 5.5vw, 30px);
+  color: var(--white);
+  text-shadow: var(--text-shadow);
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.store-handle {
+  font-size: clamp(11px, 2.8vw, 14px);
+  color: rgba(255, 255, 255, 0.78);
+  letter-spacing: 0.06em;
+  text-shadow: var(--text-shadow);
+  margin-top: -6px;
+}
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+.divider {
+  width: 56px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   TOMBOL
+   ============================================================ */
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 2.5vw, 16px);
+  width: 100%;
+}
+
+/* ── Base tombol ── */
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* ← fallback center */
+  width: 100%;
+  padding: clamp(13px, 3vw, 17px) 20px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(14px, 3.5vw, 17px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  overflow: hidden;
+  transition:
+    transform   0.18s ease,
+    box-shadow  0.18s ease;
+  min-height: 54px;
+}
+
+/* ── Teks label: absolute center sempurna ── */
+.btn-label {
+  position: absolute;      /* terlepas dari flow, tidak dipengaruhi ikon */
+  left: 0;
+  right: 0;
+  text-align: center;      /* center di seluruh lebar tombol */
+  pointer-events: none;    /* klik tetap diteruskan ke tombol */
+  z-index: 1;
+}
+
+/* Efek kilap hover */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.btn:hover::before  { opacity: 1; }
+.btn:hover          { transform: translateY(-2px) scale(1.02); }
+.btn:active         { transform: translateY(0) scale(0.98); }
+
+/* ── Warna per tombol ── */
+.btn-website {
+  background: linear-gradient(135deg, #f7d000 0%, #e8a800 100%);
+  color: #3a2600;
+  box-shadow: 0 6px 20px rgba(245, 197, 24, 0.5);
+}
+.btn-website:hover { box-shadow: 0 10px 28px rgba(245, 197, 24, 0.65); }
+
+.btn-shopee {
+  background: linear-gradient(135deg, #ff6633 0%, #ee4d2d 100%);
+  box-shadow: 0 6px 20px rgba(238, 77, 45, 0.5);
+}
+.btn-shopee:hover { box-shadow: 0 10px 28px rgba(238, 77, 45, 0.65); }
+
+.btn-gojek {
+  background: linear-gradient(135deg, #00cc18 0%, #00aa13 100%);
+  box-shadow: 0 6px 20px rgba(0, 170, 19, 0.5);
+}
+.btn-gojek:hover { box-shadow: 0 10px 28px rgba(0, 170, 19, 0.65); }
+
+/* ── Ikon dalam tombol — posisi absolute kiri ── */
+.btn-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width:  36px;
+  height: 36px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;     /* latar putih */
+  border-radius: 50%;
+  padding: 4px;
+  overflow: hidden;
+  z-index: 2;              /* di atas label dan ripple */
+}
+
+.btn-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ============================================================
+   ANIMASI
+   ============================================================ */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.btn:nth-child(1) { animation: fadeUp 0.55s 0.25s ease both; }
+.btn:nth-child(2) { animation: fadeUp 0.55s 0.40s ease both; }
+.btn:nth-child(3) { animation: fadeUp 0.55s 0.55s ease both; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (min-width: 600px) {
+  .card {
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+}
+
+@media (max-width: 480px) {
+  body { align-items: flex-start; padding-top: 10vh; }
+  .bg  { filter: brightness(0.5) saturate(1.15); }
+}
